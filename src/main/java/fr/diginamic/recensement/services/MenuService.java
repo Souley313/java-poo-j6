@@ -2,6 +2,7 @@ package fr.diginamic.recensement.services;
 
 import java.util.Scanner;
 
+import fr.diginamic.exemple.exceptions.BigException;
 import fr.diginamic.recensement.entites.Recensement;
 
 /**
@@ -17,6 +18,9 @@ public abstract class MenuService {
 	 * 
 	 * @param lignes lignes du fichier
 	 * @param scanner scanner
+	 * @throws MinPoplettreException 
+	 * @throws MinMaxException 
+	 * @throws CodeDeptNoexisException 
 	 */
-	public abstract void traiter(Recensement recensement, Scanner scanner);
+	public abstract void traiter(Recensement recensement, Scanner scanner) throws BigException;
 }

@@ -3,6 +3,7 @@ package fr.diginamic.recensement.services;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.diginamic.exemple.exceptions.BigException;
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.entites.Ville;
 
@@ -13,7 +14,7 @@ import fr.diginamic.recensement.entites.Ville;
 public class RecherchePopulationRegionService extends MenuService {
 
 	@Override
-	public void traiter(Recensement rec, Scanner scanner) {
+	public void traiter(Recensement rec, Scanner scanner) throws BigException {
 		
 		System.out.println("Quel est le code de la région recherchée ? ");
 		String choix = scanner.nextLine();
@@ -22,17 +23,17 @@ public class RecherchePopulationRegionService extends MenuService {
 		int somme = 0;
 		String nom = null;
 		for (Ville ville: villes){
+			if(!ville.getCodeRegion().equalsIgnoreCase(choix)) {
+				throw new BigException("Cette R�gion n'existe pas");
+			}
 			if (ville.getCodeRegion().equalsIgnoreCase(choix)){
 				somme+=ville.getPopulation();
 				nom=ville.getNomRegion();
 			}
 		}
-		if (somme>0){
+	
 			System.out.println("Population de la région "+nom+" : "+ somme);
-		}
-		else {
-			System.out.println("Région "+choix+" non trouvée.");
-		}
+		
 	}
 
 }

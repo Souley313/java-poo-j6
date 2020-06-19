@@ -2,6 +2,7 @@ package fr.diginamic.recensement;
 
 import java.util.Scanner;
 
+import fr.diginamic.exemple.exceptions.BigException;
 import fr.diginamic.recensement.entites.Recensement;
 import fr.diginamic.recensement.services.RecherchePopulationBorneService;
 import fr.diginamic.recensement.services.RecherchePopulationDepartementService;
@@ -20,12 +21,15 @@ public class Application {
 	 * Point d'entrée
 	 * 
 	 * @param args arguments (non utilisés ici)
+	 * @throws BigException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws BigException {
 		Scanner scanner = new Scanner(System.in);
 
-		String filePath = ClassLoader.getSystemClassLoader().getResource("recensement.csv").getFile();
-		Recensement recensement = RecensementUtils.lire(filePath);
+		Recensement recensement = RecensementUtils.lire("C:\\Users\\formation\\Desktop\\POEI Diginamic\\Projets\\java-poo-j6\\target\\classes\\recensement.csv");
+		//String filePath = ClassLoader.getSystemClassLoader().getResource("recensement.csv").getFile();
+		
+		//Recensement recensement = RecensementUtils.lire(filePath);
 
 		if (recensement == null) {
 			System.out.println("L'application doit s'arrétée en raison d'une erreur d'exécution.");
