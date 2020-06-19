@@ -21,15 +21,17 @@ public class Application {
 	 * Point d'entrée
 	 * 
 	 * @param args arguments (non utilisés ici)
-	 * @throws BigException 
+	 * @throws BigException
 	 */
 	public static void main(String[] args) throws BigException {
 		Scanner scanner = new Scanner(System.in);
 
-		Recensement recensement = RecensementUtils.lire("C:\\Users\\formation\\Desktop\\POEI Diginamic\\Projets\\java-poo-j6\\target\\classes\\recensement.csv");
-		//String filePath = ClassLoader.getSystemClassLoader().getResource("recensement.csv").getFile();
-		
-		//Recensement recensement = RecensementUtils.lire(filePath);
+		Recensement recensement = RecensementUtils.lire(
+				"C:\\Users\\formation\\Desktop\\POEI Diginamic\\Projets\\java-poo-j6\\target\\classes\\recensement.csv");
+		// String filePath =
+		// ClassLoader.getSystemClassLoader().getResource("recensement.csv").getFile();
+
+		// Recensement recensement = RecensementUtils.lire(filePath);
 
 		if (recensement == null) {
 			System.out.println("L'application doit s'arrétée en raison d'une erreur d'exécution.");
@@ -65,7 +67,11 @@ public class Application {
 				break;
 			case 4:
 				RecherchePopulationBorneService recherchePopBorne = new RecherchePopulationBorneService();
-				recherchePopBorne.traiter(recensement, scanner);
+				try {
+					recherchePopBorne.traiter(recensement, scanner);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			}
 		} while (choix != 99);
